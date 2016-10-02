@@ -17,10 +17,12 @@
 class FBullCowGame
 {
 public:
+  
+    int GetMaxTries() const;
+    int GetCurrentTry()const;
+    bool isGameWon()const;
+    
     void Reset();// TODO get a Rich Return
-    int GetMaxTries();
-    int GetCurrentTry();
-    bool isGameWon();
     bool CheckGuessValidity(std::string);// TODO get a Rich Return
     
     
