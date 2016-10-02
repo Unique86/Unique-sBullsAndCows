@@ -67,7 +67,7 @@ void PrintIntro()
 
 void PlayGame()
 {
-    FBullCowGame BCGame;
+    FBullCowGame BCGame;// why have a global varible if this is here...
     BCGame.Reset();
     int32 MaxTries = BCGame.GetMaxTries();
 
@@ -79,7 +79,11 @@ void PlayGame()
         GetGuess();//TODO check for Valid guesess
         
         //submit valid guess to the game
+        FBullCowCount BullCowCount = BCGame.SubmitGuess(Guess);
         //print numbeer of bulls and cows
+        std::cout << " Bulls = " << BullCowCount.Bulls;
+        std::cout << " Cows = " << BullCowCount.Cows << std::endl;
+        
         
     }
     //TODO sumirize game
@@ -91,7 +95,7 @@ FText GetGuess()
     int32 CurentTries = BCGame.GetCurrentTry();
     std::cout << " Try " << CurentTries << " Enter your Guess. ";
     // the guess
-    std::getline(std::cin, Guess);
+    std::getline(std::cin, Guess);// user inputs the guess
     
     return Guess;
 }
@@ -110,7 +114,7 @@ bool AskToPlayAgain()
 {
     std::cout << " Do you want to play again? y/n \n ";
     FText Responce = "";
-    std::getline(std::cin, Responce);
+    std::getline(std::cin, Responce);//user answers the question
     std::cout << std::endl;
     
     return (Responce[0] == 'Y') || (Responce[0] == 'y');
