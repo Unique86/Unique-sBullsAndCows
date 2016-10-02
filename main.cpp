@@ -55,6 +55,7 @@ void PrintIntro()
 {
     
     // Game Intro
+    constexpr int WORD_LENGTH = 9;
     std::cout << " Welcome to bulls and Cows! a fun game. \n ";
     std::cout << " What is the word of isogram i'm thinking of? \n ";
     std::cout << std::endl;
@@ -65,6 +66,8 @@ void PrintIntro()
 void PlayGame()
 {
     FBullCowGame BCGame;
+    BCGame.Reset();
+    //print out reset method
     int MaxTries = BCGame.GetMaxTries();
 
 
@@ -73,6 +76,7 @@ void PlayGame()
     {
         GetGuess();
     }
+    //TODO sumirize game
 }
 
 // get guess from user
