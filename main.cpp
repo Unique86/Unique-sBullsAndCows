@@ -9,10 +9,12 @@
 # include <iostream>
 # include <string>
 # include "FBullCowGame.hpp"
+using FText = std::string;
+using int32 = int;
 
 
 // Global Variables
-std::string Guess = "";
+FText Guess = "";// TODO see if i need this varible here...
 FBullCowGame BCGame;
 
 
@@ -20,7 +22,7 @@ FBullCowGame BCGame;
 void PrintIntro();
 
 // Guess Function
-std::string GetGuess();
+FText GetGuess();
 
 // Print Input
 void PrintInput();
@@ -55,7 +57,7 @@ void PrintIntro()
 {
     
     // Game Intro
-    constexpr int WORD_LENGTH = 9;
+    constexpr int32 WORD_LENGTH = 9;// TODO is there a use for this??
     std::cout << " Welcome to bulls and Cows! a fun game. \n ";
     std::cout << " What is the word of isogram i'm thinking of? \n ";
     std::cout << std::endl;
@@ -67,22 +69,26 @@ void PlayGame()
 {
     FBullCowGame BCGame;
     BCGame.Reset();
-    //print out reset method
-    int MaxTries = BCGame.GetMaxTries();
+    int32 MaxTries = BCGame.GetMaxTries();
 
 
-    // loop for number of turns
-    for(int i = 0; i<MaxTries; i++)
+    // loop for number of turns asking for guesses
+    //TODO change from for to while loop once we are validating tries
+    for(int32 i = 0; i<MaxTries; i++)
     {
-        GetGuess();
+        GetGuess();//TODO check for Valid guesess
+        
+        //submit valid guess to the game
+        //print numbeer of bulls and cows
+        
     }
     //TODO sumirize game
 }
 
 // get guess from user
-std::string GetGuess()
+FText GetGuess()
 {
-    int CurentTries = BCGame.GetCurrentTry();
+    int32 CurentTries = BCGame.GetCurrentTry();
     std::cout << " Try " << CurentTries << " Enter your Guess. ";
     // the guess
     std::getline(std::cin, Guess);
@@ -103,7 +109,7 @@ void PrintInput()
 bool AskToPlayAgain()
 {
     std::cout << " Do you want to play again? y/n \n ";
-    std::string Responce = "";
+    FText Responce = "";
     std::getline(std::cin, Responce);
     std::cout << std::endl;
     

@@ -11,25 +11,35 @@
 
 #include <stdio.h>
 #include <string>
+using FString = std::string;;
+using int32 = int;
 
 #endif /* FBullCowGame_hpp */
+
+struct FBullCowCount
+{
+    int32 Bulls = 0;
+    int32 Cows  = 0;
+};
 
 class FBullCowGame
 {
 public:
     FBullCowGame();// consructor
     
-    int GetMaxTries() const;
-    int GetCurrentTry()const;
+    int32 GetMaxTries() const;
+    int32 GetCurrentTry()const;
     bool isGameWon()const;
     
     void Reset();// TODO get a Rich Return
-    bool CheckGuessValidity(std::string);// TODO get a Rich Return
+    bool CheckGuessValidity(FString);// TODO get a Rich Return
+    FBullCowCount SubmitGuess(FString);
     
     
     
 private:
     //see Constructor for intialisation
-    int MyCurrentTry;
-    int MyMaxTries;
+    int32 MyCurrentTry;
+    int32 MyMaxTries;
+    FString MyHiddenWord;
 };
