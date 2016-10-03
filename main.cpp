@@ -14,7 +14,7 @@ using int32 = int;
 
 
 // Global Variables
-FText Guess = "";// TODO see if i need this varible here...
+//FText Guess = "";// TODO see if i need this varible here...
 FBullCowGame BCGame;
 
 
@@ -22,7 +22,7 @@ FBullCowGame BCGame;
 void PrintIntro();
 
 // Guess Function
-FText GetGuess();
+FText GetValidGuess();
 
 // Print Input
 void PrintInput();
@@ -70,38 +70,60 @@ void PlayGame()
     FBullCowGame BCGame;// why have a global varible if this is here...
     BCGame.Reset();
     int32 MaxTries = BCGame.GetMaxTries();
-
+    FText Guess = "";
 
     // loop for number of turns asking for guesses
-    //TODO change from for to while loop once we are validating tries
-    for(int32 i = 0; i<MaxTries; i++)
-    {
-        GetGuess();//TODO check for Valid guesess
+    for(int32 i = 0; i<MaxTries; i++)    //TODO change from for to while loop once we are validating tries
+    {    GetValidGuess();
         
-        //submit valid guess to the game
+             //print numbeer of bulls and cows
         FBullCowCount BullCowCount = BCGame.SubmitGuess(Guess);
-        //print numbeer of bulls and cows
         std::cout << " Bulls = " << BullCowCount.Bulls;
-        std::cout << " Cows = " << BullCowCount.Cows << std::endl;
+        std::cout << " Cows = " << BullCowCount.Cows << "\n" "\n";
         
         
     }
     //TODO sumirize game
 }
 
-// get guess from user
-FText GetGuess()
+// loop Continually until user gives valid guess
+FText GetValidGuess()
 {
-    int32 CurentTries = BCGame.GetCurrentTry();
-    std::cout << " Try " << CurentTries << " Enter your Guess. ";
+     FText Guess = "";
+    EGuessStatus Status = EGuessStatus::Invalid_Status;
+do{
+   
+    int32 CurentTry = BCGame.GetCurrentTry();
+    std::cout << " Try " << CurentTry << " Enter your Guess. ";
     // the guess
     std::getline(std::cin, Guess);// user inputs the guess
     
+   Status = BCGame.CheckGuessValidity(Guess);
+    
+    switch(Status)
+    {
+        case EGuessStatus::Wrong_Length:
+            std::cout << " Please Enter a " << BCGame.GetHiddenWordLength() << " Letter word. \n ";
+            break;
+        case EGuessStatus::Not_Lowercase:
+            std::cout << " Please Enter a Lower case Isogram \n ";
+            break;
+        case EGuessStatus::Not_Isogram:
+            std::cout << "This Word is not an Isogram. \n";
+            break;
+           
+        default:
+            std::cout << std::endl;
+                return Guess;
+    }
+    
+} while(Status != EGuessStatus::Ok);//keep looping until we get no errors
     return Guess;
 }
 
 void PrintInput()
 {
+    FText Guess = "";
     // print guess
     std::cout << "your Guess Was \n " << Guess << std::endl;
     std::cout << std::endl;
