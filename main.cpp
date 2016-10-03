@@ -57,9 +57,9 @@ void PrintIntro()
 {
     
     // Game Intro
-    constexpr int32 WORD_LENGTH = 9;// TODO is there a use for this??
     std::cout << " Welcome to bulls and Cows! a fun game. \n ";
-    std::cout << " What is the word of isogram i'm thinking of? \n ";
+    std::cout << " Can you Guess The " << BCGame.GetHiddenWordLength();
+    std::cout << " letter isogram I'm thinking of ";
     std::cout << std::endl;
     
     return;

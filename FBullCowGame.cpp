@@ -16,7 +16,7 @@ FBullCowGame::FBullCowGame(){Reset();}
     constexpr int32 MAX_TRIES = 8;
     MyMaxTries = MAX_TRIES;
     
-    const FString MY_HIDDENWORD = "ant";
+    const FString MY_HIDDENWORD = "planet";
     MyHiddenWord = MY_HIDDENWORD;
     
     MyCurrentTry = 1;
@@ -25,14 +25,15 @@ FBullCowGame::FBullCowGame(){Reset();}
 }
 int32 FBullCowGame::GetMaxTries()const{ return MyMaxTries; }
 int32 FBullCowGame::GetCurrentTry()const{ return MyCurrentTry; }
+int32 FBullCowGame::GetHiddenWordLength()const{ return MyHiddenWord.length(); }
 
 bool FBullCowGame::isGameWon()const
 {
     return false;
 }
-bool FBullCowGame::CheckGuessValidity(FString)
+    EWordStatus FBullCowGame::CheckGuessValidity(FString)const
 {
-    return false;
+    return EWordStatus::Ok;//TODO make actual Error
 }
 
 // recieves valid guess, incriments turn, and returns count
@@ -72,6 +73,8 @@ FBullCowCount FBullCowGame::SubmitGuess(FString Guess)
     
     return BullCowCount;
 }
+
+
 
 
 

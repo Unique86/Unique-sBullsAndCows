@@ -16,6 +16,15 @@ using int32 = int;
 
 #endif /* FBullCowGame_hpp */
 
+enum EWordStatus
+{
+    Ok,
+    Not_Isogram,
+    Wrong_Length,
+    Not_Lowercase
+    
+};
+
 struct FBullCowCount
 {
     int32 Bulls = 0;
@@ -29,10 +38,11 @@ public:
     
     int32 GetMaxTries() const;
     int32 GetCurrentTry()const;
+    int32 GetHiddenWordLength()const;
     bool isGameWon()const;
+   EWordStatus CheckGuessValidity(FString)const;// TODO get a Rich Return
     
     void Reset();// TODO get a Rich Return
-    bool CheckGuessValidity(FString);// TODO get a Rich Return
     FBullCowCount SubmitGuess(FString);
     
     
