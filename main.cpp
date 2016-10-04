@@ -28,6 +28,8 @@ void PrintInput();
 
 // Play the Game
 void PlayGame();
+//win the game or lose the game
+void PrintGameSummary();
 
 // Ask To Play
 bool AskToPlayAgain();
@@ -56,8 +58,8 @@ void PrintIntro()
 {
     
     // Game Intro
-    std::cout << " Welcome to bulls and Cows! a fun game. \n ";
-    std::cout << " Can you Guess The " << BCGame.GetHiddenWordLength();
+    std::cout << "\n\n Welcome to bulls and Cows! a fun game. \n ";
+    std::cout << "Can you Guess The " << BCGame.GetHiddenWordLength();
     std::cout << " letter isogram I'm thinking of ";
     std::cout << std::endl;
     
@@ -71,19 +73,24 @@ void PlayGame()
     int32 MaxTries = BCGame.GetMaxTries();
    
     
-    // loop for number of turns asking for guesses
-    for(int32 i = 0; i<MaxTries; i++)    //TODO change from for to while loop once we are validating tries
+    // loop ask for guesses for while the game is NOT won
+        //and their are strill tries remaining
+   while(!BCGame.isGameWon() && BCGame.GetCurrentTry() <= MaxTries)    //TODO change from for to while loop once we are validating tries
     {    FText Guess = GetValidGuess();
         
         //print numbeer of bulls and cows
-        FBullCowCount BullCowCount = BCGame.SubmitGuess(Guess);
+        FBullCowCount BullCowCount = BCGame.SubmitValidGuess(Guess);
         std::cout << " Bulls = " << BullCowCount.Bulls;
         std::cout << " Cows = " << BullCowCount.Cows << "\n" "\n";
         
         
     }
     //TODO sumirize game
+    PrintGameSummary();
+    return;
 }
+
+
 
 // loop Continually until user gives valid guess
 FText GetValidGuess()
@@ -92,8 +99,8 @@ FText GetValidGuess()
     EGuessStatus Status = EGuessStatus::Invalid_Status;
     do{
         
-        int32 CurentTry = BCGame.GetCurrentTry();
-        std::cout << " Try " << CurentTry << " of " << BCGame.GetMaxTries() << " Enter your Guess. ";
+        int32 CurrentTry = BCGame.GetCurrentTry();
+        std::cout << " Try " << CurrentTry << " of " << BCGame.GetMaxTries() << " Enter your Guess. ";
         // the guess
         std::getline(std::cin, Guess);// user inputs the guess
         
@@ -134,11 +141,24 @@ void PrintInput()
 
 bool AskToPlayAgain()
 {
-    std::cout << " Do you want to play again? y/n \n ";
+    std::cout << " Do you want to play again? with the same word y/n \n ";
     FText Responce = "";
     std::getline(std::cin, Responce);//user answers the question
     std::cout << std::endl;
     
     return (Responce[0] == 'Y') || (Responce[0] == 'y');
     
+}
+
+void PrintGameSummary()
+{
+    if(BCGame.isGameWon())
+    {
+        std::cout << " YOU WON THE GAME!!!!\n ";
+    }else
+    {
+         std::cout << " YOU SUCK TRY AGIAN!\n ";
+    }
+    
+    return;
 }

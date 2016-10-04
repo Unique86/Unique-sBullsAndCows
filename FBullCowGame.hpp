@@ -44,7 +44,7 @@ public:
     EGuessStatus CheckGuessValidity(FString)const;// TODO get a Rich Return
     
     void Reset();// TODO get a Rich Return
-    FBullCowCount SubmitGuess(FString);
+    FBullCowCount SubmitValidGuess(FString);
     
     
     
@@ -53,4 +53,5 @@ private:
     int32 MyCurrentTry;
     int32 MyMaxTries;
     FString MyHiddenWord;
+    bool bIsGameWon;
 };
