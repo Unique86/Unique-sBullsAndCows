@@ -11,27 +11,27 @@ using int32 = int;
 
 FBullCowGame::FBullCowGame(){Reset();}
 
- void FBullCowGame::Reset()
+void FBullCowGame::Reset()
 {
     constexpr int32 MAX_TRIES = 8;
     MyMaxTries = MAX_TRIES;
     
-    const FString MY_HIDDENWORD = "planet";
+    const FString MY_HIDDENWORD = "ant";
     MyHiddenWord = MY_HIDDENWORD;
     
     MyCurrentTry = 1;
-   
+    
     return;
 }
 int32 FBullCowGame::GetMaxTries()const{ return MyMaxTries; }
 int32 FBullCowGame::GetCurrentTry()const{ return MyCurrentTry; }
-int32 FBullCowGame::GetHiddenWordLength()const{ return MyHiddenWord.length(); }
+int32 FBullCowGame::GetHiddenWordLength()const{ return (int32)MyHiddenWord.length(); }
 
 bool FBullCowGame::isGameWon()const
 {
     return false;
 }
-    EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess)const
+EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess)const
 {
     if(false)//if game isn't an isogram
     {
@@ -46,8 +46,8 @@ bool FBullCowGame::isGameWon()const
     {
         return EGuessStatus::Ok;
     }
-
-
+    
+    
     
 }
 
@@ -61,24 +61,25 @@ FBullCowCount FBullCowGame::SubmitGuess(FString Guess)
     FBullCowCount BullCowCount;
     
     // loop threw all the letters in the guess
-    int32 HiddenWordLength = MyHiddenWord.length();
+    int32 HiddenWordLength = (int32)MyHiddenWord.length();
     //compare letters that go with hidden word
     for(int32 MHWChar = 0; MHWChar < HiddenWordLength; MHWChar++)
     {
         //compare letters against hidden word
         for(int32 GChar = 0; GChar < HiddenWordLength; GChar++)
         {
-    //if they match then
+            //if they match then
             if(Guess[GChar] == MyHiddenWord[MHWChar])
             {
-    
+                
                 if(MHWChar == GChar)    //if they're in the same place
                 {
                     
                     BullCowCount.Bulls++; //incriment bulls
                 }else
                 {
-                    BullCowCount.Cows++; //incriment cows
+                   
+                     BullCowCount.Cows++; //incriment cows
                     
                 }
             }
@@ -88,10 +89,5 @@ FBullCowCount FBullCowGame::SubmitGuess(FString Guess)
     
     return BullCowCount;
 }
-
-
-
-
-
 
 

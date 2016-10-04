@@ -41,7 +41,7 @@ public:
     int32 GetCurrentTry()const;
     int32 GetHiddenWordLength()const;
     bool isGameWon()const;
-   EGuessStatus CheckGuessValidity(FString)const;// TODO get a Rich Return
+    EGuessStatus CheckGuessValidity(FString)const;// TODO get a Rich Return
     
     void Reset();// TODO get a Rich Return
     FBullCowCount SubmitGuess(FString);
