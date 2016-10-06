@@ -85,7 +85,7 @@ void PlayGame()
         
         
     }
-    //TODO sumirize game
+ 
     PrintGameSummary();
     return;
 }
@@ -157,7 +157,7 @@ void PrintGameSummary()
         std::cout << " YOU WON THE GAME!!!!\n ";
     }else
     {
-         std::cout << " YOU SUCK TRY AGIAN!\n ";
+         std::cout << " WTF???\n ";
     }
     
     return;
