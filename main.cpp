@@ -115,7 +115,7 @@ FText GetValidGuess()
                 std::cout << " Please Enter a Lower case Isogram \n ";
                 break;
             case EGuessStatus::Not_Isogram:
-                std::cout << "This Word is not an Isogram. \n";
+                std::cout << "Please enter a word without repeating letters. \n";
                 break;
                 
             default:
