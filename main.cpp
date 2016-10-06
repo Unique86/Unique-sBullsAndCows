@@ -58,6 +58,17 @@ void PrintIntro()
 {
     
     // Game Intro
+    std::cout << "[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]\n";
+    std::cout << "*********************BULLS$$$$$$$$$$$$$$$$$$$$$$$\n";
+    std::cout << "**                                             $$\n";
+    std::cout << "**                     &                       $$\n";
+    std::cout << "**                                             $$\n";
+    std::cout << "*********************COWS$$$$$$$$$$$$$$$$$$$$$$$$\n";
+    std::cout << "**              ENJOY THE GAME!!               $$\n";
+    std::cout << "**                                             $$\n";
+    std::cout << "{{{{{{{{{{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}}}\n";
+    std::cout << std::endl;
+    
     std::cout << "\n\n Welcome to bulls and Cows! a fun game. \n ";
     std::cout << "Can you Guess The " << BCGame.GetHiddenWordLength();
     std::cout << " letter isogram I'm thinking of ";
@@ -109,17 +120,17 @@ FText GetValidGuess()
         switch(Status)
         {
             case EGuessStatus::Wrong_Length:
-                std::cout << " Please Enter a " << BCGame.GetHiddenWordLength() << " Letter word. \n ";
+                std::cout << " Please Enter a " << BCGame.GetHiddenWordLength() << " Letter word. \n\n ";
                 break;
             case EGuessStatus::Not_Lowercase:
-                std::cout << " Please Enter a Lower case Isogram \n ";
+                std::cout << " Please Enter a Lower case Isogram \n\n ";
                 break;
             case EGuessStatus::Not_Isogram:
-                std::cout << "Please enter a word without repeating letters. \n";
+                std::cout << "Please enter a word without repeating letters. \n\n";
                 break;
                 
             default:
-                std::cout << std::endl;
+              
                 break;
              
         }
@@ -130,7 +141,7 @@ FText GetValidGuess()
 
 void PrintInput()
 {
-    FText Guess = "";
+    FText Guess = "Correct!!";
     // print guess
     std::cout << "your Guess Was \n " << Guess << std::endl;
     std::cout << std::endl;
@@ -157,7 +168,7 @@ void PrintGameSummary()
         std::cout << " YOU WON THE GAME!!!!\n ";
     }else
     {
-         std::cout << " WTF???\n ";
+         std::cout << " Sorry you Lost\n ";
     }
     
     return;

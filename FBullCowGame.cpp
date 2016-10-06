@@ -12,23 +12,26 @@
 using int32 = int;
 
 
-int32 FBullCowGame::GetMaxTries()const{ return MyMaxTries; }
+FBullCowGame::FBullCowGame(){Reset();}//Constructor
 int32 FBullCowGame::GetCurrentTry()const{ return MyCurrentTry; }
 int32 FBullCowGame::GetHiddenWordLength()const{ return (int32)MyHiddenWord.length(); }
 bool FBullCowGame::isGameWon()const{return bIsGameWon;}
 
+int32 FBullCowGame::GetMaxTries()const
+{
+    TMap<int32, int32> WordLengthToMaxTries{{3,4}, {4,7}, {5,10}, {6,15}};
+    return WordLengthToMaxTries[(int32)MyHiddenWord.length()];
+}
 
 
-FBullCowGame::FBullCowGame(){Reset();}
+
+
 
 
 
 void FBullCowGame::Reset()
 {
-    constexpr int32 MAX_TRIES = 3;
-    MyMaxTries = MAX_TRIES;
-    
-    const FString MY_HIDDENWORD = "planet";
+    const FString MY_HIDDENWORD = "dragon";
     MyHiddenWord = MY_HIDDENWORD;
     bIsGameWon = false;
     MyCurrentTry = 1;
@@ -60,7 +63,7 @@ EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess)const
 FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
 {
     
-    MyCurrentTry++;
+    MyCurrentTry++;//bug 1
     FBullCowCount BullCowCount;
       int32 WordLength = (int32)MyHiddenWord.length();// assuming the same length as guess
     
@@ -91,14 +94,13 @@ FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
         }
     }
     
-    if(BullCowCount.Bulls == WordLength )
+    if(BullCowCount.Bulls == WordLength )//bug 2
         {
+            
         bIsGameWon = true;
+            
         }
-    else
-        {
-                bIsGameWon = false;
-        }
+  
     
     return BullCowCount;
 }
