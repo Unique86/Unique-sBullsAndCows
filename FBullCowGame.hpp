@@ -5,7 +5,7 @@
 //  Created by C Abraham on 10/1/16.
 //  Copyright © 2016 C Abraham. All rights reserved.
 //
-
+#pragma once
 #ifndef FBullCowGame_hpp
 #define FBullCowGame_hpp
 

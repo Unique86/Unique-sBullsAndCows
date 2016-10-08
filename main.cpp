@@ -5,7 +5,7 @@
 //  Created by C Abraham on 9/30/16.
 //  Copyright © 2016 C Abraham. All rights reserved.
 //
-
+#pragma once
 # include <iostream>
 # include <string>
 # include "FBullCowGame.hpp"
@@ -79,17 +79,17 @@ void PrintIntro()
 
 void PlayGame()
 {
-    FBullCowGame BCGame;// why have a global varible if this is here...
+    FBullCowGame BCGame;
     BCGame.Reset();
     int32 MaxTries = BCGame.GetMaxTries();
    
     
     // loop ask for guesses for while the game is NOT won
         //and their are strill tries remaining
-   while(!BCGame.isGameWon() && BCGame.GetCurrentTry() <= MaxTries)    //TODO change from for to while loop once we are validating tries
+   while(!BCGame.isGameWon() && BCGame.GetCurrentTry() <= MaxTries)
     {    FText Guess = GetValidGuess();
         
-        //print numbeer of bulls and cows
+      
         FBullCowCount BullCowCount = BCGame.SubmitValidGuess(Guess);
         std::cout << " Bulls = " << BullCowCount.Bulls;
         std::cout << " Cows = " << BullCowCount.Cows << "\n" "\n";
@@ -154,7 +154,7 @@ bool AskToPlayAgain()
 {
     std::cout << " Do you want to play again? with the same word y/n \n ";
     FText Responce = "";
-    std::getline(std::cin, Responce);//user answers the question
+    std::getline(std::cin, Responce);
     std::cout << std::endl;
     
     return (Responce[0] == 'Y') || (Responce[0] == 'y');
@@ -165,10 +165,10 @@ void PrintGameSummary()
 {
     if(BCGame.isGameWon())
     {
-        std::cout << " YOU WON THE GAME!!!!\n ";
+        std::cout << " YOU WON THE GAME!!!!\n ";/* does not print because of unknown bug*/
     }else
     {
-         std::cout << " Sorry you Lost\n ";
+        // std::cout << " Sorry you Lost\n ";
     }
     
     return;

@@ -5,7 +5,7 @@
 //  Created by C Abraham on 10/1/16.
 //  Copyright © 2016 C Abraham. All rights reserved.
 //
-
+#pragma once
 #include "FBullCowGame.hpp"
 #include <map>
 #define TMap std::map
@@ -44,10 +44,10 @@ EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess)const
     if(!IsIsogram(Guess))//if game isn't an isogram
     {
         return EGuessStatus::Not_Isogram;
-    }else if(!IsLowerCase(Guess)) //if the game isn't all lowercase
+    }else if(!IsLowerCase(Guess))
     {
         return EGuessStatus::Not_Lowercase;
-    }else if(Guess.length() != GetHiddenWordLength())  //if the guess length is wrong
+    }else if(Guess.length() != GetHiddenWordLength())
     {
         return EGuessStatus::Wrong_Length;
     }else
@@ -63,17 +63,17 @@ EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess)const
 FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
 {
     
-    MyCurrentTry++;//bug 1
+    MyCurrentTry++;//bug 1 come back to this in the future
     FBullCowCount BullCowCount;
-      int32 WordLength = (int32)MyHiddenWord.length();// assuming the same length as guess
+      int32 Length = (int32)MyHiddenWord.length();
     
     // loop threw all the letters in the hidden word
   
     //compare letters that go with the guess
-    for(int32 MHWChar = 0; MHWChar < WordLength; MHWChar++)
+    for(int32 MHWChar = 0; MHWChar < Length; MHWChar++)
     {
         //compare letters against hidden word
-        for(int32 GChar = 0; GChar < WordLength; GChar++)
+        for(int32 GChar = 0; GChar < Length; GChar++)
         {
             //if they match then
             if(Guess[GChar] == MyHiddenWord[MHWChar])
@@ -94,7 +94,7 @@ FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
         }
     }
     
-    if(BullCowCount.Bulls == WordLength )//bug 2
+    if(BullCowCount.Bulls == Length)//bug 2 come back to this in the future
         {
             
         bIsGameWon = true;
